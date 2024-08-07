@@ -6,7 +6,7 @@ namespace PropertyTesting
     {
         private static bool IsAlphanumeric(string value) => value.All(c => !char.IsLetterOrDigit(c));
 
-        private static bool IsNotNullOrEmpty(string? value) =>  !String.IsNullOrEmpty(value);
+        private static bool IsNotNullOrEmpty(string? value) => !String.IsNullOrEmpty(value);
 
         public static Arbitrary<string> Generate()
         {
@@ -23,7 +23,7 @@ namespace PropertyTesting
 
         public static Arbitrary<string> Generate()
         {
-            return Gen.Choose(0, Names.Count-1).Select(x => Names[x]).ToArbitrary();
+            return Gen.Choose(0, Names.Count - 1).Select(x => Names[x]).ToArbitrary();
         }
     }
 }

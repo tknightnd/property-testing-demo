@@ -9,7 +9,7 @@ namespace PropertyTesting
         public bool AdditionIsCommutative(int x, int y) => (x + y) == (y + x);
 
         [Property(Verbose = true)]
-        public bool MultiplicationByIdIsAlwaysZero(int x) => (x* 0) == 0.0;
+        public bool MultiplicationByIdIsAlwaysZero(int x) => (x * 0) == 0.0;
 
         [Property(Verbose = true)]
         public bool AddElementToArrayResultsAppend(List<int> xs, int x)
@@ -28,7 +28,7 @@ namespace PropertyTesting
             return xs.Take(original.Length).SequenceEqual(original);
         }
 
-        
+
         [Property(Verbose = true)]
         public bool ReversePreservesSequenceOnRepeat(List<int> xs)
         {
@@ -36,7 +36,7 @@ namespace PropertyTesting
 
             var zs = ys.Reverse();
 
-            return zs.SequenceEqual(xs) ;
+            return zs.SequenceEqual(xs);
         }
 
         [Property(Verbose = true)]
@@ -76,7 +76,7 @@ namespace PropertyTesting
         [Property(Verbose = true)]
         public bool JsonComposedTests(List<int> xs)
         {
-            return JsonSerialisationProducesArray(xs) 
+            return JsonSerialisationProducesArray(xs)
                    && JsonSerialisationIsSymmetric(xs);
         }
 
