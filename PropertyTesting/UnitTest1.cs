@@ -6,20 +6,20 @@ namespace PropertyTesting
     public class UnitTest1
     {
         [Property(Verbose = true)]
-        public bool AdditionIsCommutative(int x, int y) => (x + y) == (y + x);
+        public bool Addition_Is_Commutative(int x, int y) => (x + y) == (y + x);
 
         [Property(Verbose = true)]
-        public bool MultiplicationByIdIsAlwaysZero(int x) => (x * 0) == 0.0;
+        public bool Multiplication_By_Id_Is_AlwaysZero(int x) => (x * 0) == 0.0;
 
         [Property(Verbose = true)]
-        public bool AddElementToArrayResultsAppend(List<int> xs, int x)
+        public bool Add_Element_To_Array_Results_In_Append(List<int> xs, int x)
         {
             xs.Add(x);
             return xs.Last() == x;
         }
 
         [Property(Verbose = true)]
-        public bool AddElementToArrayPreservesOriginal(List<int> xs, int x)
+        public bool Add_Element_To_Array_Preserves_Original(List<int> xs, int x)
         {
             var original = xs.ToArray();
 
@@ -27,10 +27,9 @@ namespace PropertyTesting
 
             return xs.Take(original.Length).SequenceEqual(original);
         }
-
-
+        
         [Property(Verbose = true)]
-        public bool ReversePreservesSequenceOnRepeat(List<int> xs)
+        public bool Reverse_Preserves_Sequence_On_Repeat(List<int> xs)
         {
             var ys = xs.AsEnumerable().Reverse();
 
@@ -40,7 +39,7 @@ namespace PropertyTesting
         }
 
         [Property(Verbose = true)]
-        public bool ReverseFlipsSequence(List<int> xs)
+        public bool Reverse_Flips_Sequence(List<int> xs)
         {
             xs = xs.Distinct().ToList();
             if (xs.Count <= 1) return true; // ignore too-small sequences 
@@ -52,7 +51,7 @@ namespace PropertyTesting
 
 
         [Property(Verbose = true)]
-        public bool JsonSerialisationProducesArray(List<int> xs)
+        public bool Json_Serialisation_Produces_Array(List<int> xs)
         {
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(xs);
 
@@ -64,7 +63,7 @@ namespace PropertyTesting
         }
 
         [Property(Verbose = true)]
-        public bool JsonSerialisationIsSymmetric(List<int> xs)
+        public bool Json_Serialisation_Is_Symmetric(List<int> xs)
         {
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(xs);
 
@@ -74,17 +73,17 @@ namespace PropertyTesting
         }
 
         [Property(Verbose = true)]
-        public bool JsonComposedTests(List<int> xs)
+        public bool Json_Composed_Tests(List<int> xs)
         {
-            return JsonSerialisationProducesArray(xs)
-                   && JsonSerialisationIsSymmetric(xs);
+            return Json_Serialisation_Produces_Array(xs)
+                   && Json_Serialisation_Is_Symmetric(xs);
         }
 
         [Property(Verbose = true, MaxTest = 1000, Arbitrary = new[] { typeof(AlphaNumericString) })]
-        public bool StringsLengthIsNonNegative(string value) => value.Length >= 0;
+        public bool Strings_Length_Is_NonNegative(string value) => value.Length >= 0;
 
         [Property(Verbose = true, MaxTest = 1000)]
-        public bool RandomStringsAreValidated(string value)
+        public bool Random_Strings_Are_Validated(string value)
         {
             bool ValidateSut(string x) => true; // we don't care what the result, we're demonstrating a validation function
 
@@ -92,7 +91,7 @@ namespace PropertyTesting
         }
 
         [Property(Verbose = true, Arbitrary = new[] { typeof(RandomFirstName) })]
-        public bool ConstrainedSetArbitrary(string? firstName)
+        public bool Constrained_Set_Arbitrary(string? firstName)
         {
             return firstName != null;
         }
